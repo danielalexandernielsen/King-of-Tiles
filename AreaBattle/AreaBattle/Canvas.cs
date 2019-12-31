@@ -4,8 +4,7 @@ namespace AreaBattle
 {
     class Canvas
     {
-
-        public static void Generate(out Grid layout, out Grid canvas, out Grid gameInterface, out Grid time, out Grid score)
+        public static void Generate(out Grid layout, out Grid canvas, out Grid gameUI, out Grid time, out Grid scorePlayer1)
         {
             layout = new Grid
             {
@@ -17,6 +16,7 @@ namespace AreaBattle
                         new RowDefinition { Height = new GridLength(2, GridUnitType.Star) },
                     }
             };
+
             canvas = new Grid
             {
                 ColumnSpacing = 0,
@@ -48,7 +48,7 @@ namespace AreaBattle
                     }
             };
 
-            gameInterface = new Grid
+            gameUI = new Grid
             {
                 ColumnSpacing = 10,
                 RowSpacing = 0,
@@ -56,12 +56,9 @@ namespace AreaBattle
 
                 ColumnDefinitions =
                     {
-                        new ColumnDefinition { },
-                        new ColumnDefinition { },
-                        new ColumnDefinition { },
-                        new ColumnDefinition { },
-                        new ColumnDefinition { },
-                        new ColumnDefinition { },
+                        new ColumnDefinition { }, new ColumnDefinition { },
+                        new ColumnDefinition { }, new ColumnDefinition { },
+                        new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { },
                     },
                 RowDefinitions =
@@ -105,7 +102,7 @@ namespace AreaBattle
                     }
             };
 
-            score = new Grid
+            scorePlayer1 = new Grid
             {
                 ColumnSpacing = 0,
                 RowSpacing = 0,
@@ -124,6 +121,9 @@ namespace AreaBattle
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
+                        new ColumnDefinition { }, new ColumnDefinition { }, 
+                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) }, 
+                        new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
@@ -136,7 +136,7 @@ namespace AreaBattle
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
-                        new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
+
                     },
                 RowDefinitions =
                     {

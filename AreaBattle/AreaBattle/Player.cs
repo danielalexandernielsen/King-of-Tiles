@@ -9,6 +9,7 @@ namespace AreaBattle
     {
 
         static HashSet<Tuple<Color, int, int>> player1Tiles = new HashSet<Tuple<Color, int, int>>();
+        public static HashSet<Tuple<Color, int, int>> player1TilesEdge = new HashSet<Tuple<Color, int, int>>();
         static HashSet<Tuple<Color, int, int>> player2Tiles = new HashSet<Tuple<Color, int, int>>();
 
         public static void ClickedRed(object sender, EventArgs e) { SwitchColor(Color.FromHex("DA0032")); }
@@ -18,7 +19,7 @@ namespace AreaBattle
         public static void ClickedPurple(object sender, EventArgs e) { SwitchColor(Color.FromHex("7C378A")); }
 
 
-        public static void FirstRun(out Color playerOneColor, out Color playerTwoColor)
+        public static void Start(out Color playerOneColor, out Color playerTwoColor)
         {
             playerOneColor = Draw.canvasData[28, 36];
             playerTwoColor = Draw.canvasData[0, 0];
@@ -32,6 +33,8 @@ namespace AreaBattle
         static void FindOwnedArea()
         {
             bool foundNewTile = true;
+            player1TilesEdge.Clear();
+
             while (foundNewTile == true)
             {
                 for (int tile = 0; tile < player1Tiles.Count; tile++)
@@ -44,18 +47,26 @@ namespace AreaBattle
                     if (y - 1 >= 0)
                         if (Draw.canvasData[x, y - 1] == playerOneColor)
                             foundNewTile = player1Tiles.Add(new Tuple<Color, int, int>(playerOneColor, x, y - 1));
+                        else
+                            player1TilesEdge.Add(new Tuple<Color, int, int>(playerOneColor, x, y));
 
                     if (y + 1 <= 36)
                         if (Draw.canvasData[x, y + 1] == playerOneColor)
                             foundNewTile = player1Tiles.Add(new Tuple<Color, int, int>(playerOneColor, x, y + 1));
+                        else
+                            player1TilesEdge.Add(new Tuple<Color, int, int>(playerOneColor, x, y));
 
                     if (x - 1 >= 0)
                         if (Draw.canvasData[x - 1, y] == playerOneColor)
                             foundNewTile = player1Tiles.Add(new Tuple<Color, int, int>(playerOneColor, x - 1, y));
+                        else
+                            player1TilesEdge.Add(new Tuple<Color, int, int>(playerOneColor, x, y));
 
                     if (x + 1 <= 28)
                         if (Draw.canvasData[x + 1, y] == playerOneColor)
                             foundNewTile = player1Tiles.Add(new Tuple<Color, int, int>(playerOneColor, x + 1, y));
+                        else
+                            player1TilesEdge.Add(new Tuple<Color, int, int>(playerOneColor, x, y));
                 }
             }
         }
@@ -73,7 +84,7 @@ namespace AreaBattle
             }
 
             FindOwnedArea();
-            Draw.PlayerAreaExpansion(player1Tiles);
+            Draw.Tiles(player1Tiles);
             UI.UpdateScore(colorFromButton, player1Tiles.Count);
         }
     }

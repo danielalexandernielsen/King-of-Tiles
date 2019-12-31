@@ -9,19 +9,18 @@ namespace AreaBattle
 
         public Game()
         {
-
             Draw.SetColors(out List<Color> colors);
             Canvas.Generate(out Grid layout, out Grid canvas, out Grid gameUI, out Grid timeBar, out Grid scoreBar);
 
-        Draw:
-            Draw.StartField(colors, canvas);
-            Player.FirstRun(out Color playerOne, out Color playerTwo);
+            DRAW:
+            Draw.Tiles(canvas, colors);
+            Player.Start(out Color playerOne, out Color playerTwo);
             if (playerOne == playerTwo)
-                goto Draw;
+                goto DRAW;
 
             Device.StartTimer(TimeSpan.FromSeconds(1.0), () => UpdateTime(gameUI, timeBar));
             UI.Buttons(colors, gameUI, playerOne, playerTwo);
-            UI.SetStartScore(gameUI, scoreBar);
+            UI.Score(gameUI, scoreBar);
             Sound.Play();
 
             layout.Children.Add(canvas, 0, 0);

@@ -8,12 +8,12 @@ namespace AreaBattle
     class Draw
     {
         public static Color[,] canvasData = new Color[29, 37];
-        public static int canvasWidth = canvasData.GetLength(0);
-        public static int canvasHeight = canvasData.GetLength(1);
+        static int canvasWidth = canvasData.GetLength(0);
+        static int canvasHeight = canvasData.GetLength(1);
         static Random randomize = new Random();
         static Grid catchCanvas;
 
-        public static void StartField(List<Color> colors, Grid canvas)
+        public static void Tiles(Grid canvas, List<Color> colors)
         {
             catchCanvas = canvas;
 
@@ -44,7 +44,7 @@ namespace AreaBattle
             }
         }
 
-        public static void PlayerAreaExpansion(HashSet<Tuple<Color, int, int>> playerOneTiles)
+        public static void Tiles(HashSet<Tuple<Color, int, int>> playerOneTiles)
         {
             for (int tile = 0; tile < playerOneTiles.Count; tile++)
             {
@@ -54,6 +54,15 @@ namespace AreaBattle
 
                 canvasData[x, y] = color;
                 catchCanvas.Children.Add(new Image { BackgroundColor = canvasData[x, y] }, x, y);
+            }
+
+            for (int tile = 0; tile < Player.player1TilesEdge.Count; tile++)
+            {
+                Color color = Player.player1TilesEdge.ElementAt(tile).Item1;
+                int x = Player.player1TilesEdge.ElementAt(tile).Item2;
+                int y = Player.player1TilesEdge.ElementAt(tile).Item3;
+
+                catchCanvas.Children.Add(new Image { BackgroundColor = Color.Black }, x, y);
             }
         }
 
