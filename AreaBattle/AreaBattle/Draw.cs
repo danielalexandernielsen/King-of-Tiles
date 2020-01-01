@@ -13,7 +13,7 @@ namespace AreaBattle
         static Random randomize = new Random();
         static Grid catchCanvas;
 
-        public static void Tiles(Grid canvas, List<Color> colors)
+        public static void Tile(Grid canvas, List<Color> colors)
         {
             catchCanvas = canvas;
 
@@ -44,23 +44,23 @@ namespace AreaBattle
             }
         }
 
-        public static void Tiles(HashSet<Tuple<Color, int, int>> playerOneTiles)
+        public static void Tile(HashSet<Tuple<Color, int, int>> tiles)
         {
-            for (int tile = 0; tile < playerOneTiles.Count; tile++)
+            for (int tile = 0; tile < tiles.Count; tile++)
             {
-                Color color = playerOneTiles.ElementAt(tile).Item1;
-                int x = playerOneTiles.ElementAt(tile).Item2;
-                int y = playerOneTiles.ElementAt(tile).Item3;
+                Color color = tiles.ElementAt(tile).Item1;
+                int x = tiles.ElementAt(tile).Item2;
+                int y = tiles.ElementAt(tile).Item3;
 
                 canvasData[x, y] = color;
                 catchCanvas.Children.Add(new Image { BackgroundColor = canvasData[x, y] }, x, y);
             }
 
-            for (int tile = 0; tile < Player.player1TilesEdge.Count; tile++)
+            for (int tile = 0; tile < Player.edgeTiles.Count; tile++)
             {
-                Color color = Player.player1TilesEdge.ElementAt(tile).Item1;
-                int x = Player.player1TilesEdge.ElementAt(tile).Item2;
-                int y = Player.player1TilesEdge.ElementAt(tile).Item3;
+                Color color = Player.edgeTiles.ElementAt(tile).Item1;
+                int x = Player.edgeTiles.ElementAt(tile).Item2;
+                int y = Player.edgeTiles.ElementAt(tile).Item3;
 
                 catchCanvas.Children.Add(new Image { BackgroundColor = Color.Black }, x, y);
             }

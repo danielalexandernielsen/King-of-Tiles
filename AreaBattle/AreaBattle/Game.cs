@@ -13,7 +13,7 @@ namespace AreaBattle
             Canvas.Generate(out Grid layout, out Grid canvas, out Grid gameUI, out Grid timeBar, out Grid scoreBar);
 
             DRAW:
-            Draw.Tiles(canvas, colors);
+            Draw.Tile(canvas, colors);
             Player.Start(out Color playerOne, out Color playerTwo);
             if (playerOne == playerTwo)
                 goto DRAW;
