@@ -9,9 +9,6 @@ namespace AreaBattle
     {
 
         public static HashSet<Tuple<Color, int, int>> coreTiles = new HashSet<Tuple<Color, int, int>>();
-        public static HashSet<Tuple<Color, int, int>> edgeTiles = new HashSet<Tuple<Color, int, int>>();
-        public static HashSet<Tuple<Color, int, int>> newEdgeTiles = new HashSet<Tuple<Color, int, int>>();
-        public static HashSet<Tuple<Color, int, int>> newCoreTiles = new HashSet<Tuple<Color, int, int>>();
         static HashSet<Tuple<Color, int, int>> player2Tiles = new HashSet<Tuple<Color, int, int>>();
 
         public static void ClickedRed(object sender, EventArgs e) { SwitchColor(Color.FromHex("DA0032")); }
@@ -36,8 +33,6 @@ namespace AreaBattle
         {
             bool foundNewTile = true;
 
-            edgeTiles.Clear();
-
             while (foundNewTile == true)
             {
                 for (int tile = 0; tile < coreTiles.Count; tile++)
@@ -48,39 +43,21 @@ namespace AreaBattle
                     int x = coreTiles.ElementAt(tile).Item2;
                     int y = coreTiles.ElementAt(tile).Item3;
 
-                    Tuple<Color, int, int> thisTile = new Tuple<Color, int, int>(playerColor, x, y);
-
                     if (y - 1 >= 0)
                         if (Draw.canvasData[x, y - 1] == playerColor)
-                        {
                             foundNewTile = coreTiles.Add(new Tuple<Color, int, int>(playerColor, x, y - 1));
-                        }
-                        else
-                            edgeTiles.Add(new Tuple<Color, int, int>(playerColor, x, y));
 
                     if (y + 1 <= 36)
                         if (Draw.canvasData[x, y + 1] == playerColor)
-                        {
                             foundNewTile = coreTiles.Add(new Tuple<Color, int, int>(playerColor, x, y + 1));
-                        }
-                        else
-                            edgeTiles.Add(new Tuple<Color, int, int>(playerColor, x, y));
 
                     if (x - 1 >= 0)
                         if (Draw.canvasData[x - 1, y] == playerColor)
-                        {
                             foundNewTile = coreTiles.Add(new Tuple<Color, int, int>(playerColor, x - 1, y));
-                        }
-                        else
-                            edgeTiles.Add(new Tuple<Color, int, int>(playerColor, x, y));
 
                     if (x + 1 <= 28)
                         if (Draw.canvasData[x + 1, y] == playerColor)
-                        {
                             foundNewTile = coreTiles.Add(new Tuple<Color, int, int>(playerColor, x + 1, y));
-                        }
-                        else
-                            edgeTiles.Add(new Tuple<Color, int, int>(playerColor, x, y));
                 }
             }
         }

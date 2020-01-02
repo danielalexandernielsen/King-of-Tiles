@@ -55,15 +55,6 @@ namespace AreaBattle
                 canvasData[x, y] = color;
                 catchCanvas.Children.Add(new Image { BackgroundColor = canvasData[x, y] }, x, y);
             }
-
-            for (int tile = 0; tile < Player.edgeTiles.Count; tile++)
-            {
-                Color color = Player.edgeTiles.ElementAt(tile).Item1;
-                int x = Player.edgeTiles.ElementAt(tile).Item2;
-                int y = Player.edgeTiles.ElementAt(tile).Item3;
-
-                catchCanvas.Children.Add(new Image { BackgroundColor = Color.Black }, x, y);
-            }
         }
 
 
