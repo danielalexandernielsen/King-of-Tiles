@@ -20,8 +20,8 @@ namespace AreaBattle
 
         public static void Start(out Color playerOneColor, out Color playerTwoColor)
         {
-            playerOneColor = Draw.canvasData[28, 36];
-            playerTwoColor = Draw.canvasData[0, 0];
+            playerOneColor = Draw.canvasData[28, 36].Color;
+            playerTwoColor = Draw.canvasData[0, 0].Color;
 
             coreTiles.Add(new Tuple<Color, int, int>(playerOneColor, 28, 36));
             player2Tiles.Add(new Tuple<Color, int, int>(playerTwoColor, 0, 0));
@@ -30,7 +30,7 @@ namespace AreaBattle
 
         public static void SwitchColor(Color colorFromButton)
         {
-            Color originalColor = Draw.canvasData[28, 36];
+            Color originalColor = Draw.canvasData[28, 36].Color;
             FindOwnedArea(colorFromButton, originalColor, 28, 36);
         }
 
@@ -48,38 +48,35 @@ namespace AreaBattle
 
                 Q.Dequeue();
 
-                if (replacementColor == originalColor)
-                    return;
-
                 if (y - 1 >= 0)
-                    if (Draw.canvasData[x, y - 1] == originalColor)
+                    if (Draw.canvasData[x, y - 1].Color == originalColor)
                     {
-                        Draw.canvasData[x, y - 1] = replacementColor;
-                        Draw.catchCanvas.Children.Add(new BoxView { Color = replacementColor }, x, y - 1);
+                        Draw.canvasData[x, y - 1].Color = replacementColor;
+                        // Draw.catchCanvas.Children.Add(new BoxView { Color = replacementColor }, x, y - 1);
                         Q.Enqueue(new Tuple<int, int>(x, y - 1));
                     }
 
                 if (y + 1 <= 36)
-                    if (Draw.canvasData[x, y + 1] == originalColor)
+                    if (Draw.canvasData[x, y + 1].Color == originalColor)
                     {
-                        Draw.canvasData[x, y + 1] = replacementColor;
-                        Draw.catchCanvas.Children.Add(new BoxView { Color = replacementColor }, x, y + 1);
+                        Draw.canvasData[x, y + 1].Color = replacementColor;
+                        // Draw.catchCanvas.Children.Add(new BoxView { Color = replacementColor }, x, y + 1);
                         Q.Enqueue(new Tuple<int, int>(x, y + 1));
                     }
 
                 if (x - 1 >= 0)
-                    if (Draw.canvasData[x - 1, y] == originalColor)
+                    if (Draw.canvasData[x - 1, y].Color == originalColor)
                     {
-                        Draw.canvasData[x - 1, y] = replacementColor;
-                        Draw.catchCanvas.Children.Add(new BoxView { Color = replacementColor }, x - 1, y);
+                        Draw.canvasData[x - 1, y].Color = replacementColor;
+                        // Draw.catchCanvas.Children.Add(new BoxView { Color = replacementColor }, x - 1, y);
                         Q.Enqueue(new Tuple<int, int>(x - 1, y));
                     }
 
                 if (x + 1 <= 28)
-                    if (Draw.canvasData[x + 1, y] == originalColor)
+                    if (Draw.canvasData[x + 1, y].Color == originalColor)
                     {
-                        Draw.canvasData[x + 1, y] = replacementColor;
-                        Draw.catchCanvas.Children.Add(new BoxView { Color = replacementColor }, x + 1, y);
+                        Draw.canvasData[x + 1, y].Color = replacementColor;
+                        // Draw.catchCanvas.Children.Add(new BoxView { Color = replacementColor }, x + 1, y);
                         Q.Enqueue(new Tuple<int, int>(x + 1, y));
                     }
             }

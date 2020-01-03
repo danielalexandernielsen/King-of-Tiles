@@ -7,13 +7,13 @@ namespace AreaBattle
 {
     class Draw
     {
-        public static Color[,] canvasData = new Color[29, 37];
+        public static BoxView[,] canvasData = new BoxView[29, 37];
         static int canvasWidth = canvasData.GetLength(0);
         static int canvasHeight = canvasData.GetLength(1);
         static Random randomize = new Random();
         public static Grid catchCanvas;
 
-        public static void Tile(Grid canvas, List<Color> colors)
+        public static void StartTiles(Grid canvas, List<Color> colors)
         {
             catchCanvas = canvas;
 
@@ -21,25 +21,25 @@ namespace AreaBattle
             {
                 for (int col = 0; col < canvasHeight; col++)
                 {
-                    canvasData[row, col] = colors[randomize.Next(0, 5)];
+                    canvasData[row, col] = new BoxView { Color = colors[randomize.Next(0, 5)] };
 
                     if (row > 0 && col > 0)
                     {
                         if ((canvasData[row, col] != canvasData[row, col - 1]) && (canvasData[row, col] != canvasData[row - 1, col]))
-                            canvasData[row, col] = colors[randomize.Next(0, 5)];
+                            canvasData[row, col].Color = colors[randomize.Next(0, 5)];
                     }
                     else if (row == 0 && col > 0)
                     {
                         if (canvasData[row, col] != canvasData[row, col - 1])
-                            canvasData[row, col] = colors[randomize.Next(0, 5)];
+                            canvasData[row, col].Color = colors[randomize.Next(0, 5)];
                     }
                     else if (col == 0 && row > 0)
                     {
                         if (canvasData[row, col] != canvasData[row - 1, col])
-                            canvasData[row, col] = colors[randomize.Next(0, 5)];
+                            canvasData[row, col].Color = colors[randomize.Next(0, 5)];
                     }
 
-                    canvas.Children.Add(new BoxView { Color = canvasData[row, col] }, row, col);
+                    canvas.Children.Add(canvasData[row, col], row, col);
                 }
             }
         }

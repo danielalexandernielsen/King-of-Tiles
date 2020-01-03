@@ -11,7 +11,7 @@ namespace AreaBattle
         {
             Draw.SetColors(out List<Color> colors);
             Canvas.Generate(out Grid layout, out Grid canvas, out Grid gameUI, out Grid timeBar, out Grid scoreBar);
-            Draw.Tile(canvas, colors);
+            Draw.StartTiles(canvas, colors);
             Player.Start(out Color playerOne, out Color playerTwo);
             Device.StartTimer(TimeSpan.FromSeconds(1.0), () => UpdateTime(gameUI, timeBar));
             UI.Buttons(colors, gameUI, playerOne, playerTwo);
