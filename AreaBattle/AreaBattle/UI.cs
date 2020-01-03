@@ -43,14 +43,14 @@ namespace AreaBattle
             {
                 for (int i = 0; i < 60; i++)
                 {
-                    timeBar.Children.Add(new Image { BackgroundColor = Color.Gray }, i, 0);
+                    timeBar.Children.Add(new BoxView { Color = Color.Gray }, i, 0);
                     gameUI.Children.Add(timeBar, 1, 1);
                     Grid.SetColumnSpan(timeBar, 5);
                     second = 0;
                 }
             }
 
-            timeBar.Children.Add(new Image { BackgroundColor = Color.FromHex("E9E2D7") }, 59 - second, 0);
+            timeBar.Children.Add(new BoxView { Color = Color.FromHex("E9E2D7") }, 59 - second, 0);
             second++;
         }
 
@@ -58,11 +58,11 @@ namespace AreaBattle
         static Grid catchScoreBar;
 
         public static void Score(Grid gameUI, Grid scoreBar)
-        {            
+        {
             catchGameUI = gameUI;
             catchScoreBar = scoreBar;
 
-            catchScoreBar.Children.Add(new Image { BackgroundColor = Color.Gray }, 50, 0);
+            catchScoreBar.Children.Add(new BoxView { Color = Color.Gray }, 50, 0);
             catchGameUI.Children.Add(catchScoreBar, 1, 5);
             Grid.SetColumnSpan(catchScoreBar, 5);
         }
@@ -72,7 +72,7 @@ namespace AreaBattle
             double player1percentage = nrOfOwnedTiles / 10.73;
 
             for (int score = 0; score < Convert.ToInt32(player1percentage); score++)
-                catchScoreBar.Children.Add(new Image { BackgroundColor = colorFromButton }, score, 0);
+                catchScoreBar.Children.Add(new BoxView { Color = colorFromButton }, score, 0);
 
             catchGameUI.Children.Add(catchScoreBar, 1, 5);
             Grid.SetColumnSpan(catchScoreBar, 5);

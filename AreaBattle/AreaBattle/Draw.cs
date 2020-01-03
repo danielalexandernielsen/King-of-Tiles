@@ -11,7 +11,7 @@ namespace AreaBattle
         static int canvasWidth = canvasData.GetLength(0);
         static int canvasHeight = canvasData.GetLength(1);
         static Random randomize = new Random();
-        static Grid catchCanvas;
+        public static Grid catchCanvas;
 
         public static void Tile(Grid canvas, List<Color> colors)
         {
@@ -39,24 +39,10 @@ namespace AreaBattle
                             canvasData[row, col] = colors[randomize.Next(0, 5)];
                     }
 
-                    canvas.Children.Add(new Image { BackgroundColor = canvasData[row, col] }, row, col);
+                    canvas.Children.Add(new BoxView { Color = canvasData[row, col] }, row, col);
                 }
             }
         }
-
-        public static void Tile(HashSet<Tuple<Color, int, int>> tiles)
-        {
-            for (int tile = 0; tile < tiles.Count; tile++)
-            {
-                Color color = tiles.ElementAt(tile).Item1;
-                int x = tiles.ElementAt(tile).Item2;
-                int y = tiles.ElementAt(tile).Item3;
-
-                canvasData[x, y] = color;
-                catchCanvas.Children.Add(new Image { BackgroundColor = canvasData[x, y] }, x, y);
-            }
-        }
-
 
         public static void SetColors(out List<Color> colors)
         {
