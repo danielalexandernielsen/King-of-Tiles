@@ -9,25 +9,24 @@ namespace AreaBattle
 
         public Game()
         {
-            Draw.SetColors(out List<Color> colors);
-            Canvas.Generate(out Grid layout, out Grid canvas, out Grid interFace, out Grid time, out Grid score);
-            Draw.Tile(canvas, colors);
+            Canvas.Generate();
+            Draw.Tile();
             Player.Start();
-            Device.StartTimer(TimeSpan.FromSeconds(1.0), () => UpdateTime(interFace, time));
-            UI.Buttons(colors, interFace, Player.One, Player.Two);
-            UI.Score(interFace, score);
+            Device.StartTimer(TimeSpan.FromSeconds(1.0), UpdateTime);
+            UI.InitializeButton();
+            UI.Score();
             Sound.Play();
 
-            layout.Children.Add(canvas, 0, 0);
-            layout.Children.Add(interFace, 0, 1);
-            Content = layout;
+            Canvas.layout.Children.Add(Canvas.board, 0, 0);
+            Canvas.layout.Children.Add(Canvas.interFace, 0, 1);
+            Content = Canvas.layout;
         }
 
-        private static bool UpdateTime(Grid gameUI, Grid timeBar)
+        private static bool UpdateTime()
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                UI.Time(gameUI, timeBar);
+                UI.Time();
             });
             return true;
         }

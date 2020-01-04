@@ -6,65 +6,75 @@ namespace AreaBattle
 {
     class UI
     {
-        public static void Buttons(List<Color> colors, Grid gameUI, Color playerOne, Color playerTwo)
+        public static Button buttonRed = new Button { BackgroundColor = Draw.colors[0] };
+        public static Button buttonGreen = new Button { BackgroundColor = Draw.colors[1] };
+        public static Button buttonBlue = new Button { BackgroundColor = Draw.colors[2] };
+        public static Button buttonOrange = new Button { BackgroundColor = Draw.colors[3] };
+        public static Button buttonPurple = new Button { BackgroundColor = Draw.colors[4] };
+
+        static List<Tuple<Button, int, int>> buttons = new List<Tuple<Button, int, int>>
+            {
+            new Tuple<Button, int, int>(buttonRed, 1, 3),
+            new Tuple<Button, int, int>(buttonGreen, 2, 3),
+            new Tuple<Button, int, int>(buttonBlue, 3, 3),
+            new Tuple<Button, int, int>(buttonOrange, 4, 3),
+            new Tuple<Button, int, int>(buttonPurple, 5, 3),
+        };
+
+        public static void InitializeButton()
         {
-            var buttonRed = new Button { BackgroundColor = colors[0] };
             buttonRed.Clicked += Player.ClickedRed;
-            // if (playerOne != buttonRed.BackgroundColor && playerTwo != buttonRed.BackgroundColor)
-            gameUI.Children.Add(buttonRed, 1, 3);
-
-            var buttonGreen = new Button { BackgroundColor = colors[1] };
             buttonGreen.Clicked += Player.ClickedGreen;
-            // if (playerOne != buttonGreen.BackgroundColor && playerTwo != buttonGreen.BackgroundColor)
-            gameUI.Children.Add(buttonGreen, 2, 3);
-
-            var buttonBlue = new Button { BackgroundColor = colors[2] };
             buttonBlue.Clicked += Player.ClickedBlue;
-            // if (playerOne != buttonBlue.BackgroundColor && playerTwo != buttonBlue.BackgroundColor)
-            gameUI.Children.Add(buttonBlue, 3, 3);
-
-            var buttonOrange = new Button { BackgroundColor = colors[3] };
             buttonOrange.Clicked += Player.ClickedOrange;
-            // if (playerOne != buttonOrange.BackgroundColor && playerTwo != buttonOrange.BackgroundColor)
-            gameUI.Children.Add(buttonOrange, 4, 3);
-
-            var buttonPurple = new Button { BackgroundColor = colors[4] };
             buttonPurple.Clicked += Player.ClickedPurple;
-            // if (playerOne != buttonPurple.BackgroundColor && playerTwo != buttonPurple.BackgroundColor)
-            gameUI.Children.Add(buttonPurple, 5, 3);
+
+            UpdateButtons();
         }
+
+        public static void UpdateButtons()
+        {
+            foreach (var element in buttons)
+            {
+                Button button = element.Item1;
+                int x = element.Item2;
+                int y = element.Item3;
+
+                if (Player.OneColor == button.BackgroundColor)
+                    Canvas.interFace.Children.Remove(button);
+                else
+                    if (Canvas.interFace.Children.Contains(button) == false)
+                        Canvas.interFace.Children.Add(button, x, y);
+            }
+        }
+
 
         static int second = 0;
 
-        public static void Time(Grid gameUI, Grid timeBar)
+        public static void Time()
 
         {
             if (second == 0 || second == 60)
             {
                 for (int i = 0; i < 60; i++)
                 {
-                    timeBar.Children.Add(new BoxView { Color = Color.Gray }, i, 0);
-                    gameUI.Children.Add(timeBar, 1, 1);
-                    Grid.SetColumnSpan(timeBar, 5);
+                    Canvas.time.Children.Add(new BoxView { Color = Color.Gray }, i, 0);
+                    Canvas.interFace.Children.Add(Canvas.time, 1, 1);
+                    Grid.SetColumnSpan(Canvas.time, 5);
                     second = 0;
                 }
             }
 
-            timeBar.Children.Add(new BoxView { Color = Color.FromHex("E9E2D7") }, 59 - second, 0);
+            Canvas.time.Children.Add(new BoxView { Color = Color.FromHex("E9E2D7") }, 59 - second, 0);
             second++;
         }
 
-        static Grid catchGameUI;
-        static Grid catchScoreBar;
 
-        public static void Score(Grid gameUI, Grid scoreBar)
+        public static void Score()
         {
-            catchGameUI = gameUI;
-            catchScoreBar = scoreBar;
-
-            catchScoreBar.Children.Add(new BoxView { Color = Color.Gray }, 50, 0);
-            catchGameUI.Children.Add(catchScoreBar, 1, 5);
-            Grid.SetColumnSpan(catchScoreBar, 5);
+            Canvas.score.Children.Add(new BoxView { Color = Color.Gray }, 50, 0);
+            Canvas.interFace.Children.Add(Canvas.score, 1, 5);
+            Grid.SetColumnSpan(Canvas.score, 5);
         }
 
         public static void UpdateScore(Color colorFromButton, int nrOfOwnedTiles)
@@ -72,10 +82,10 @@ namespace AreaBattle
             double player1percentage = nrOfOwnedTiles / 10.73;
 
             for (int score = 0; score < Convert.ToInt32(player1percentage); score++)
-                catchScoreBar.Children.Add(new BoxView { Color = colorFromButton }, score, 0);
+                Canvas.score.Children.Add(new BoxView { Color = colorFromButton }, score, 0);
 
-            catchGameUI.Children.Add(catchScoreBar, 1, 5);
-            Grid.SetColumnSpan(catchScoreBar, 5);
+            Canvas.interFace.Children.Add(Canvas.score, 1, 5);
+            Grid.SetColumnSpan(Canvas.score, 5);
         }
     }
 }

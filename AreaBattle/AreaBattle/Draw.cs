@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xamarin.Forms;
 
 namespace AreaBattle
@@ -13,8 +12,17 @@ namespace AreaBattle
         static int canvasHeight = canvasData.GetLength(1);
         static Random randomize = new Random();
 
+        public static List<Color> colors = new List<Color>
+            {
+                Color.FromHex("DA0032"), // Red
+                Color.FromHex("0AA174"), // Green
+                Color.FromHex("3465AA"), // Blue
+                Color.FromHex("EB9B00"), // Orange
+                Color.FromHex("7C378A"), // Purple
+            };
 
-        public static void Tile(Grid canvas, List<Color> colors)
+
+    public static void Tile()
         {
             for (int row = 0; row < canvasWidth; row++)
             {
@@ -39,7 +47,7 @@ namespace AreaBattle
                     }
 
                     canvasData[row, col] = new BoxView { Color = colorData[row, col] };
-                    canvas.Children.Add(canvasData[row, col], row, col);
+                    Canvas.board.Children.Add(canvasData[row, col], row, col);
                 }
             }
         }
@@ -87,18 +95,6 @@ namespace AreaBattle
                         Q.Enqueue(new Tuple<int, int>(x + 1, y));
                     }
             }
-        }
-
-        public static void SetColors(out List<Color> colors)
-        {
-            colors = new List<Color>
-            {
-                Color.FromHex("DA0032"), // Red
-                Color.FromHex("0AA174"), // Green
-                Color.FromHex("3465AA"), // Blue
-                Color.FromHex("EB9B00"), // Orange
-                Color.FromHex("7C378A"), // Purple
-            };
         }
     }
 }

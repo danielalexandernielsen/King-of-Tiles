@@ -4,7 +4,13 @@ namespace AreaBattle
 {
     class Canvas
     {
-        public static void Generate(out Grid layout, out Grid canvas, out Grid gameUI, out Grid time, out Grid score)
+        public static Grid layout;
+        public static Grid board;
+        public static Grid interFace;
+        public static Grid time;
+        public static Grid score;
+
+        public static void Generate()
         {
             layout = new Grid
             {
@@ -17,7 +23,7 @@ namespace AreaBattle
                     }
             };
 
-            canvas = new Grid
+            board = new Grid
             {
                 ColumnSpacing = 0,
                 RowSpacing = 0,
@@ -48,7 +54,7 @@ namespace AreaBattle
                     }
             };
 
-            gameUI = new Grid
+            interFace = new Grid
             {
                 ColumnSpacing = 10,
                 RowSpacing = 0,
