@@ -4,7 +4,7 @@ namespace AreaBattle
 {
     class Canvas
     {
-        public static void Generate(out Grid layout, out Grid canvas, out Grid gameUI, out Grid time, out Grid scorePlayer1)
+        public static void Generate(out Grid layout, out Grid canvas, out Grid gameUI, out Grid time, out Grid score)
         {
             layout = new Grid
             {
@@ -102,7 +102,7 @@ namespace AreaBattle
                     }
             };
 
-            scorePlayer1 = new Grid
+            score = new Grid
             {
                 ColumnSpacing = 0,
                 RowSpacing = 0,
@@ -121,8 +121,8 @@ namespace AreaBattle
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
-                        new ColumnDefinition { }, new ColumnDefinition { }, 
-                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) }, 
+                        new ColumnDefinition { }, new ColumnDefinition { },
+                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },
                         new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
