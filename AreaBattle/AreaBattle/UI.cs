@@ -44,46 +44,80 @@ namespace AreaBattle
                     Canvas.interFace.Children.Remove(button);
                 else
                     if (Canvas.interFace.Children.Contains(button) == false)
-                        Canvas.interFace.Children.Add(button, x, y);
+                    Canvas.interFace.Children.Add(button, x, y);
             }
         }
 
 
         static int second = 0;
+        static BoxView[] timeData = new BoxView[60];
+        static bool timeBarDrawn = false;
 
         public static void Time()
 
         {
             if (second == 0 || second == 60)
             {
-                for (int i = 0; i < 60; i++)
+                for (int x = 0; x < 60; x++)
                 {
-                    Canvas.time.Children.Add(new BoxView { Color = Color.Gray }, i, 0);
+                    if (timeBarDrawn == false)
+                    {
+                        timeData[x] = new BoxView { Color = Color.Gray };
+                        Canvas.time.Children.Add(timeData[x], x, 0);
+                    }
+                    else
+                    {
+                        timeData[x].Color = Color.Gray;
+                        Canvas.time.Children.Add(timeData[x], x, 0);
+                    }
+
                     Canvas.interFace.Children.Add(Canvas.time, 1, 1);
                     Grid.SetColumnSpan(Canvas.time, 5);
                     second = 0;
                 }
+                timeBarDrawn = true;
             }
 
-            Canvas.time.Children.Add(new BoxView { Color = Color.FromHex("E9E2D7") }, 59 - second, 0);
+            int timeReversed = 59 - second;
+            timeData[timeReversed].Color = Color.FromHex("E9E2D7");
+            Canvas.time.Children.Add(timeData[timeReversed], timeReversed, 0);
             second++;
         }
 
 
+        static BoxView[] scoreData = new BoxView[101];
+
         public static void Score()
         {
-            Canvas.score.Children.Add(new BoxView { Color = Color.Gray }, 50, 0);
+            for (int x = 0; x <= 100; x++)
+            {
+                if (x == 50)
+                {
+                    scoreData[x] = new BoxView { Color = Color.Gray };
+                    Canvas.score.Children.Add(scoreData[x], x, 0);
+                }
+
+                else
+                {
+                    scoreData[x] = new BoxView { Color = Color.FromHex("E9E2D7") };
+                    Canvas.score.Children.Add(scoreData[x], x, 0);
+                }
+            }
             Canvas.interFace.Children.Add(Canvas.score, 1, 5);
             Grid.SetColumnSpan(Canvas.score, 5);
         }
 
-        public static void UpdateScore(Color replacementColor, HashSet<Tuple<int, int>> tiles)
+        public static void UpdateScore(Color replacementColor, HashSet<Tuple<int, int>> PlayerScore)
         {
-            int nrOfOwnedTiles = tiles.Count;
-            double player1percentage = nrOfOwnedTiles / 10.73;
+            int nrOfOwnedTiles = PlayerScore.Count;
+            double currentScore = nrOfOwnedTiles / 10.73;
+            int divider = 50;
 
-            for (int score = 0; score < Convert.ToInt32(player1percentage); score++)
-                Canvas.score.Children.Add(new BoxView { Color = replacementColor }, score, 0);
+            for (int x = 0; x < (int)currentScore; x++)
+            {
+                scoreData[x].Color = replacementColor;
+                Canvas.score.Children.Add(scoreData[x], x, 0);
+            }
 
             Canvas.interFace.Children.Add(Canvas.score, 1, 5);
             Grid.SetColumnSpan(Canvas.score, 5);

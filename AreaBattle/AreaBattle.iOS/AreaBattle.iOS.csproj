@@ -135,4 +135,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\AreaBattleTest3.mp3" />
   </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarAreaBattleiOSHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

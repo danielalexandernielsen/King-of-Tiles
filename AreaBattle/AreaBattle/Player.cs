@@ -12,6 +12,7 @@ namespace AreaBattle
         public static void ClickedOrange(object sender, EventArgs e) { FillColorAndUpdateButtons(UI.buttonOrange); }
         public static void ClickedPurple(object sender, EventArgs e) { FillColorAndUpdateButtons(UI.buttonPurple); }
 
+        public static int playerTurn;
         public static Color OneColor;
         public static Color TwoColor;
         public static HashSet<Tuple<int, int>> oneScore = new HashSet<Tuple<int, int>>();
@@ -21,6 +22,7 @@ namespace AreaBattle
         {
             Player.OneColor = Draw.canvasData[28, 36].Color;
             Player.TwoColor = Draw.canvasData[0, 0].Color;
+            playerTurn = 1;
         }
 
         public static void FillColorAndUpdateButtons(Button button)
