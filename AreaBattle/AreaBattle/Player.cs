@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace AreaBattle
@@ -13,8 +14,8 @@ namespace AreaBattle
 
         public static Color OneColor;
         public static Color TwoColor;
-        public static int OneScore;
-        public static int TwoScore;
+        public static HashSet<Tuple<int, int>> oneScore = new HashSet<Tuple<int, int>>();
+        public static HashSet<Tuple<int, int>> twoScore = new HashSet<Tuple<int, int>>();
 
         public static void Start()
         {
@@ -24,9 +25,13 @@ namespace AreaBattle
 
         public static void FillColorAndUpdateButtons(Button button)
         {
-            Draw.Update(button.BackgroundColor, OneColor, 28, 36);
-            Player.OneColor = Draw.canvasData[28, 36].Color;
+            Color replacementColor = button.BackgroundColor;
+            Color originalColor = Player.OneColor;
+
+            Draw.Update(replacementColor, originalColor, 28, 36);
+            Player.OneColor = replacementColor;
             UI.UpdateButtons();
+            UI.UpdateScore(replacementColor, Player.oneScore);
         }
     }
 }

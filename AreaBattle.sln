@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaBattle.Android", "AreaB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaBattle.iOS", "AreaBattle\AreaBattle.iOS\AreaBattle.iOS.csproj", "{8C85074E-24C4-4970-ADEF-5B3AB11E6955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaBattle", "AreaBattle\AreaBattle\AreaBattle.csproj", "{99B74749-5520-494E-AA5F-80B5617E3C12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AreaBattle", "AreaBattle\AreaBattle\AreaBattle.csproj", "{99B74749-5520-494E-AA5F-80B5617E3C12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

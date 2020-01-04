@@ -77,12 +77,13 @@ namespace AreaBattle
             Grid.SetColumnSpan(Canvas.score, 5);
         }
 
-        public static void UpdateScore(Color colorFromButton, int nrOfOwnedTiles)
+        public static void UpdateScore(Color replacementColor, HashSet<Tuple<int, int>> tiles)
         {
+            int nrOfOwnedTiles = tiles.Count;
             double player1percentage = nrOfOwnedTiles / 10.73;
 
             for (int score = 0; score < Convert.ToInt32(player1percentage); score++)
-                Canvas.score.Children.Add(new BoxView { Color = colorFromButton }, score, 0);
+                Canvas.score.Children.Add(new BoxView { Color = replacementColor }, score, 0);
 
             Canvas.interFace.Children.Add(Canvas.score, 1, 5);
             Grid.SetColumnSpan(Canvas.score, 5);

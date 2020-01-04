@@ -22,7 +22,7 @@ namespace AreaBattle
             };
 
 
-    public static void Tile()
+        public static void Tile()
         {
             for (int row = 0; row < canvasWidth; row++)
             {
@@ -57,6 +57,7 @@ namespace AreaBattle
 
             var Q = new Queue<Tuple<int, int>>();
             Q.Enqueue(new Tuple<int, int>(startX, startY));
+            Player.oneScore.Add(new Tuple<int, int>(startX, startY));
 
             while (Q.Count > 0)
             {
@@ -72,6 +73,7 @@ namespace AreaBattle
                     {
                         canvasData[x, y - 1].Color = replacementColor;
                         Q.Enqueue(new Tuple<int, int>(x, y - 1));
+                        Player.oneScore.Add(new Tuple<int, int>(x, y - 1));
                     }
 
                 if (y + 1 <= 36)
@@ -79,6 +81,7 @@ namespace AreaBattle
                     {
                         canvasData[x, y + 1].Color = replacementColor;
                         Q.Enqueue(new Tuple<int, int>(x, y + 1));
+                        Player.oneScore.Add(new Tuple<int, int>(x, y + 1));
                     }
 
                 if (x - 1 >= 0)
@@ -86,6 +89,7 @@ namespace AreaBattle
                     {
                         canvasData[x - 1, y].Color = replacementColor;
                         Q.Enqueue(new Tuple<int, int>(x - 1, y));
+                        Player.oneScore.Add(new Tuple<int, int>(x - 1, y));
                     }
 
                 if (x + 1 <= 28)
@@ -93,6 +97,7 @@ namespace AreaBattle
                     {
                         canvasData[x + 1, y].Color = replacementColor;
                         Q.Enqueue(new Tuple<int, int>(x + 1, y));
+                        Player.oneScore.Add(new Tuple<int, int>(x + 1, y));
                     }
             }
         }
