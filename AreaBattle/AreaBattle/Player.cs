@@ -56,7 +56,7 @@ namespace AreaBattle
             Draw.Update(replacementColor, originalColor, Player.X, Player.Y);
             Player.Color = replacementColor;
             UI.UpdateButtons();
-            // UI.UpdateScore(replacementColor, Player.Score);
+            UI.UpdateScore(replacementColor, Player.Score);
             Player.ChangeTurn();
         }
     }

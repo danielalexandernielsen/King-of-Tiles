@@ -22,7 +22,7 @@ namespace AreaBattle
             };
 
 
-        public static void Tile()
+        public static void Tiles()
         {
             for (int row = 0; row < canvasWidth; row++)
             {

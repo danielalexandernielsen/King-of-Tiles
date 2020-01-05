@@ -10,11 +10,11 @@ namespace AreaBattle
         public Game()
         {
             Canvas.Generate();
-            Draw.Tile();
+            Draw.Tiles();
             Player.Start();
             Device.StartTimer(TimeSpan.FromSeconds(1.0), UpdateTime);
-            UI.InitializeButton();
-            UI.Score();
+            UI.InitializeButtons();
+            UI.InitializeScore();
             Sound.Play();
 
             Canvas.layout.Children.Add(Canvas.board, 0, 0);

@@ -21,7 +21,7 @@ namespace AreaBattle
             new Tuple<Button, int, int>(buttonPurple, 5, 3),
         };
 
-        public static void InitializeButton()
+        public static void InitializeButtons()
         {
             buttonRed.Clicked += Player.ClickedRed;
             buttonGreen.Clicked += Player.ClickedGreen;
@@ -87,7 +87,7 @@ namespace AreaBattle
 
         static BoxView[] scoreData = new BoxView[101];
 
-        public static void Score()
+        public static void InitializeScore()
         {
             for (int x = 0; x <= 100; x++)
             {
@@ -110,13 +110,21 @@ namespace AreaBattle
         public static void UpdateScore(Color replacementColor, HashSet<Tuple<int, int>> playerScore)
         {
             int nrOfOwnedTiles = playerScore.Count;
-            double currentScore = nrOfOwnedTiles / 10.73;
+            double currentScore = Math.Ceiling(nrOfOwnedTiles / 10.73);
             int divider = 50;
 
             for (int x = 0; x < (int)currentScore; x++)
             {
+                if (Player.turn == 1)
+                {
                 scoreData[x].Color = replacementColor;
                 Canvas.score.Children.Add(scoreData[x], x, 0);
+                }
+                else
+                {
+                    scoreData[100 - x].Color = replacementColor;
+                    Canvas.score.Children.Add(scoreData[100 - x], 100 - x, 0);
+                }
             }
 
             Canvas.interFace.Children.Add(Canvas.score, 1, 5);
