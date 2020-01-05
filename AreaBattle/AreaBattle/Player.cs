@@ -6,34 +6,58 @@ namespace AreaBattle
 {
     class Player
     {
-        public static void ClickedRed(object sender, EventArgs e) { FillColorAndUpdateButtons(UI.buttonRed); }
-        public static void ClickedGreen(object sender, EventArgs e) { FillColorAndUpdateButtons(UI.buttonGreen); }
-        public static void ClickedBlue(object sender, EventArgs e) { FillColorAndUpdateButtons(UI.buttonBlue); }
-        public static void ClickedOrange(object sender, EventArgs e) { FillColorAndUpdateButtons(UI.buttonOrange); }
-        public static void ClickedPurple(object sender, EventArgs e) { FillColorAndUpdateButtons(UI.buttonPurple); }
+        public static void ClickedRed(object sender, EventArgs e) { Move(UI.buttonRed); }
+        public static void ClickedGreen(object sender, EventArgs e) { Move(UI.buttonGreen); }
+        public static void ClickedBlue(object sender, EventArgs e) { Move(UI.buttonBlue); }
+        public static void ClickedOrange(object sender, EventArgs e) { Move(UI.buttonOrange); }
+        public static void ClickedPurple(object sender, EventArgs e) { Move(UI.buttonPurple); }
 
-        public static int playerTurn;
-        public static Color OneColor;
-        public static Color TwoColor;
+        public static int turn;
+        public static Color oneColor;
+        public static Color twoColor;
+
         public static HashSet<Tuple<int, int>> oneScore = new HashSet<Tuple<int, int>>();
         public static HashSet<Tuple<int, int>> twoScore = new HashSet<Tuple<int, int>>();
 
-        public static void Start()
+        public static int X { get { return Player.turn == 1 ? 28 : 0; } }
+        public static int Y { get { return Player.turn == 1 ? 36 : 0; } }
+        public static Color Color
         {
-            Player.OneColor = Draw.canvasData[28, 36].Color;
-            Player.TwoColor = Draw.canvasData[0, 0].Color;
-            playerTurn = 1;
+            get { return Player.turn == 1 ? oneColor : twoColor; }
+            set { _ = (Player.turn == 1 ? oneColor = value : twoColor = value); }
         }
 
-        public static void FillColorAndUpdateButtons(Button button)
+        public static HashSet<Tuple<int, int>> Score
         {
-            Color replacementColor = button.BackgroundColor;
-            Color originalColor = Player.OneColor;
+            get { return Player.turn == 1 ? oneScore : twoScore; }
+            set { _ = (Player.turn == 1 ? oneScore = value : twoScore = value); }
+        }
 
-            Draw.Update(replacementColor, originalColor, 28, 36);
-            Player.OneColor = replacementColor;
+        public static void Start()
+        {
+            Player.oneColor = Draw.canvasData[28, 36].Color;
+            Player.twoColor = Draw.canvasData[0, 0].Color;
+            Player.turn = 1;
+        }
+
+        public static void ChangeTurn()
+        {
+            if (Player.turn == 1)
+                Player.turn = 2;
+            else
+                Player.turn = 1;
+        }
+
+        public static void Move(Button button)
+        {
+            Color originalColor = Player.Color;
+            Color replacementColor = button.BackgroundColor;
+
+            Draw.Update(replacementColor, originalColor, Player.X, Player.Y);
+            Player.Color = replacementColor;
             UI.UpdateButtons();
-            UI.UpdateScore(replacementColor, Player.oneScore);
+            // UI.UpdateScore(replacementColor, Player.Score);
+            Player.ChangeTurn();
         }
     }
 }

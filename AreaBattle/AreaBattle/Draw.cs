@@ -66,7 +66,7 @@ namespace AreaBattle
                 canvasData[x, y].Color = replacementColor;
 
                 Q.Dequeue();
-                Player.oneScore.Add(new Tuple<int, int>(x, y));
+                Player.Score.Add(new Tuple<int, int>(x, y));
 
                 if (y - 1 >= 0)
                     if (canvasData[x, y - 1].Color == sourceColor)

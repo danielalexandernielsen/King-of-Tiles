@@ -40,7 +40,7 @@ namespace AreaBattle
                 int x = element.Item2;
                 int y = element.Item3;
 
-                if (Player.OneColor == button.BackgroundColor)
+                if (Player.oneColor == button.BackgroundColor || Player.twoColor == button.BackgroundColor)
                     Canvas.interFace.Children.Remove(button);
                 else
                     if (Canvas.interFace.Children.Contains(button) == false)
@@ -107,9 +107,9 @@ namespace AreaBattle
             Grid.SetColumnSpan(Canvas.score, 5);
         }
 
-        public static void UpdateScore(Color replacementColor, HashSet<Tuple<int, int>> PlayerScore)
+        public static void UpdateScore(Color replacementColor, HashSet<Tuple<int, int>> playerScore)
         {
-            int nrOfOwnedTiles = PlayerScore.Count;
+            int nrOfOwnedTiles = playerScore.Count;
             double currentScore = nrOfOwnedTiles / 10.73;
             int divider = 50;
 
