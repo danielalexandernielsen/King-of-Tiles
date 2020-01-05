@@ -37,7 +37,19 @@ namespace AreaBattle
         {
             Player.oneColor = Draw.canvasData[28, 36].Color;
             Player.twoColor = Draw.canvasData[0, 0].Color;
-            Player.turn = 1;
+
+            if (Player.oneColor == Player.twoColor)
+            {
+                while (Player.oneColor == Player.twoColor)
+                { 
+                Player.oneColor = Draw.colors[Draw.randomize.Next(0, 5)];
+                Player.twoColor = Draw.colors[Draw.randomize.Next(0, 5)];
+                }
+                Draw.canvasData[28, 36].Color = Player.oneColor;
+                Draw.canvasData[0, 0].Color = Player.twoColor;
+            }
+
+            Player.turn = Draw.randomize.Next(1, 3);
         }
 
         public static void ChangeTurn()

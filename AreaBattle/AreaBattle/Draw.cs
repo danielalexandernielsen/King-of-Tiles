@@ -8,9 +8,9 @@ namespace AreaBattle
     {
         public static BoxView[,] canvasData = new BoxView[29, 37];
         public static Color[,] colorData = new Color[29, 37];
+        public static Random randomize = new Random();
         static int canvasWidth = canvasData.GetLength(0);
         static int canvasHeight = canvasData.GetLength(1);
-        static Random randomize = new Random();
 
         public static List<Color> colors = new List<Color>
             {
@@ -21,6 +21,7 @@ namespace AreaBattle
                 Color.FromHex("7C378A"), // Purple
             };
 
+        static bool firstRun = true;
 
         public static void Tiles()
         {
