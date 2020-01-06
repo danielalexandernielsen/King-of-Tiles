@@ -50,7 +50,7 @@ namespace AreaBattle
                         new RowDefinition { }, new RowDefinition { }, new RowDefinition { }, new RowDefinition { },
                         new RowDefinition { }, new RowDefinition { }, new RowDefinition { }, new RowDefinition { },
                         new RowDefinition { }, new RowDefinition { }, new RowDefinition { }, new RowDefinition { },
-                        new RowDefinition { },
+                        new RowDefinition { }, new RowDefinition { }, new RowDefinition { }, new RowDefinition { },
                     }
             };
 

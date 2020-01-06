@@ -115,7 +115,7 @@ namespace AreaBattle
         public static void UpdateScore(Color replacementColor, HashSet<Tuple<int, int>> playerScore)
         {
             int nrOfOwnedTiles = playerScore.Count;
-            double currentScore = Math.Ceiling(nrOfOwnedTiles / 10.73);
+            double currentScore = Math.Ceiling(nrOfOwnedTiles / 11.6);
             int divider = 50;
 
             for (int x = 0; x < (int)currentScore; x++)

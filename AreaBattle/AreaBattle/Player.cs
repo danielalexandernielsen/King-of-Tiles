@@ -19,8 +19,8 @@ namespace AreaBattle
         public static HashSet<Tuple<int, int>> oneScore = new HashSet<Tuple<int, int>>();
         public static HashSet<Tuple<int, int>> twoScore = new HashSet<Tuple<int, int>>();
 
-        public static int X { get { return Player.turn == 1 ? 28 : 0; } }
-        public static int Y { get { return Player.turn == 1 ? 36 : 0; } }
+        public static int X { get { return Player.turn == 1 ? 29 : 1; } }
+        public static int Y { get { return Player.turn == 1 ? 40 : 1; } }
         public static Color Color
         {
             get { return Player.turn == 1 ? oneColor : twoColor; }
@@ -35,8 +35,8 @@ namespace AreaBattle
 
         public static void Start()
         {
-            Player.oneColor = Draw.canvasData[28, 36].Color;
-            Player.twoColor = Draw.canvasData[0, 0].Color;
+            Player.oneColor = Draw.canvasData[29, 40].Color;
+            Player.twoColor = Draw.canvasData[1, 1].Color;
 
             if (Player.oneColor == Player.twoColor)
             {
@@ -45,8 +45,8 @@ namespace AreaBattle
                     Player.oneColor = Draw.colors[Draw.randomize.Next(0, 5)];
                     Player.twoColor = Draw.colors[Draw.randomize.Next(0, 5)];
                 }
-                Draw.canvasData[28, 36].Color = Player.oneColor;
-                Draw.canvasData[0, 0].Color = Player.twoColor;
+                Draw.canvasData[29, 40].Color = Player.oneColor;
+                Draw.canvasData[1, 1].Color = Player.twoColor;
             }
 
             Player.turn = Draw.randomize.Next(1, 3);
