@@ -100,7 +100,7 @@ namespace AreaBattle
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
-                        new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
+                        new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, 
                     },
                 RowDefinitions =
                     {

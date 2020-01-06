@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace AreaBattle
@@ -12,7 +11,7 @@ namespace AreaBattle
             Canvas.Generate();
             Draw.Tiles();
             Player.Start();
-            Device.StartTimer(TimeSpan.FromSeconds(1.0), UpdateTime);
+            Device.StartTimer(TimeSpan.FromSeconds(0.1), UpdateTime);
             UI.InitializeButtons();
             UI.InitializeScore();
             Sound.Play();

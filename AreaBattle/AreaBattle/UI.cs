@@ -12,7 +12,7 @@ namespace AreaBattle
         public static Button buttonOrange = new Button { BackgroundColor = Draw.colors[3] };
         public static Button buttonPurple = new Button { BackgroundColor = Draw.colors[4] };
 
-        static List<Tuple<Button, int, int>> buttons = new List<Tuple<Button, int, int>>
+        public static List<Tuple<Button, int, int>> buttons = new List<Tuple<Button, int, int>>
             {
             new Tuple<Button, int, int>(buttonRed, 1, 3),
             new Tuple<Button, int, int>(buttonGreen, 2, 3),
@@ -53,10 +53,9 @@ namespace AreaBattle
         static BoxView[] timeData = new BoxView[60];
         static bool timeBarDrawn = false;
 
-        public static void Time()
-
+        public static void Time(bool resetTime = false)
         {
-            if (second == 0 || second == 60)
+            if (second == 0 || second == 60 || resetTime == true)
             {
                 for (int x = 0; x < 60; x++)
                 {
@@ -70,17 +69,23 @@ namespace AreaBattle
                         timeData[x].Color = Color.Gray;
                         Canvas.time.Children.Add(timeData[x], x, 0);
                     }
-
-                    Canvas.interFace.Children.Add(Canvas.time, 1, 1);
-                    Grid.SetColumnSpan(Canvas.time, 5);
-                    second = 0;
                 }
+
+                if (second == 60)
+                {
+                    second = 0;
+                    Player.AutoMove();
+                }
+
+                second = 0;
                 timeBarDrawn = true;
             }
 
             int timeReversed = 59 - second;
             timeData[timeReversed].Color = Color.FromHex("E9E2D7");
-            Canvas.time.Children.Add(timeData[timeReversed], timeReversed, 0);
+            Canvas.interFace.Children.Add(Canvas.time, 1, 1);
+            Grid.SetColumnSpan(Canvas.time, 5);
+
             second++;
         }
 
@@ -116,15 +121,9 @@ namespace AreaBattle
             for (int x = 0; x < (int)currentScore; x++)
             {
                 if (Player.turn == 1)
-                {
-                scoreData[x].Color = replacementColor;
-                Canvas.score.Children.Add(scoreData[x], x, 0);
-                }
-                else
-                {
                     scoreData[100 - x].Color = replacementColor;
-                    Canvas.score.Children.Add(scoreData[100 - x], 100 - x, 0);
-                }
+                else
+                    scoreData[x].Color = replacementColor;
             }
 
             Canvas.interFace.Children.Add(Canvas.score, 1, 5);

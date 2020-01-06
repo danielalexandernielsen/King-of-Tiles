@@ -41,9 +41,9 @@ namespace AreaBattle
             if (Player.oneColor == Player.twoColor)
             {
                 while (Player.oneColor == Player.twoColor)
-                { 
-                Player.oneColor = Draw.colors[Draw.randomize.Next(0, 5)];
-                Player.twoColor = Draw.colors[Draw.randomize.Next(0, 5)];
+                {
+                    Player.oneColor = Draw.colors[Draw.randomize.Next(0, 5)];
+                    Player.twoColor = Draw.colors[Draw.randomize.Next(0, 5)];
                 }
                 Draw.canvasData[28, 36].Color = Player.oneColor;
                 Draw.canvasData[0, 0].Color = Player.twoColor;
@@ -64,12 +64,36 @@ namespace AreaBattle
         {
             Color originalColor = Player.Color;
             Color replacementColor = button.BackgroundColor;
+            bool resetCountdown = true;
 
             Draw.Update(replacementColor, originalColor, Player.X, Player.Y);
             Player.Color = replacementColor;
             UI.UpdateButtons();
             UI.UpdateScore(replacementColor, Player.Score);
+            UI.Time(resetCountdown);
             Player.ChangeTurn();
+        }
+
+        public static void AutoMove()
+        {
+            Color autoPickColor;
+            
+            while (true)
+            {
+                autoPickColor = Draw.colors[Draw.randomize.Next(0, 5)];
+
+                if (autoPickColor != Player.oneColor && autoPickColor != Player.twoColor)
+                    break;                   
+            }
+
+            foreach (var button in UI.buttons)
+            {
+                if (button.Item1.BackgroundColor == autoPickColor)
+                {
+                    Player.Move(button.Item1);
+                    break;
+                }
+            }
         }
     }
 }
