@@ -6,12 +6,6 @@ namespace AreaBattle
 {
     class Player
     {
-        public static void ClickedRed(object sender, EventArgs e) { Move(UI.buttonRed); }
-        public static void ClickedGreen(object sender, EventArgs e) { Move(UI.buttonGreen); }
-        public static void ClickedBlue(object sender, EventArgs e) { Move(UI.buttonBlue); }
-        public static void ClickedOrange(object sender, EventArgs e) { Move(UI.buttonOrange); }
-        public static void ClickedPurple(object sender, EventArgs e) { Move(UI.buttonPurple); }
-
         public static int turn;
         public static Color oneColor;
         public static Color twoColor;
@@ -39,26 +33,24 @@ namespace AreaBattle
             Player.twoColor = Draw.canvasData[1, 1].Color;
 
             if (Player.oneColor == Player.twoColor)
-            {
                 while (Player.oneColor == Player.twoColor)
                 {
                     Player.oneColor = Draw.colors[Draw.randomize.Next(0, 5)];
                     Player.twoColor = Draw.colors[Draw.randomize.Next(0, 5)];
-                }
-                Draw.canvasData[29, 40].Color = Player.oneColor;
-                Draw.canvasData[1, 1].Color = Player.twoColor;
-            }
+                }             
+
+            Draw.canvasData[1, 1].Color = Player.twoColor;
+            Draw.canvasData[1, 2].Color = Player.twoColor;
+            Draw.canvasData[2, 1].Color = Player.twoColor;
+
+            Draw.canvasData[29, 40].Color = Player.oneColor;
+            Draw.canvasData[29, 39].Color = Player.oneColor;
+            Draw.canvasData[28, 40].Color = Player.oneColor;
 
             Player.turn = Draw.randomize.Next(1, 3);
         }
 
-        public static void ChangeTurn()
-        {
-            if (Player.turn == 1)
-                Player.turn = 2;
-            else
-                Player.turn = 1;
-        }
+        public static int ChangeTurn() => Player.turn == 1 ? Player.turn = 2 : Player.turn = 1;
 
         public static void Move(Button button)
         {
@@ -70,8 +62,8 @@ namespace AreaBattle
             Player.Color = replacementColor;
             UI.UpdateButtons();
             UI.UpdateScore(replacementColor, Player.Score);
-            UI.Time(resetCountdown);
             Player.ChangeTurn();
+            UI.Time(resetCountdown);
         }
 
         public static void AutoMove()

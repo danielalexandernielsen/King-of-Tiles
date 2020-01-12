@@ -27,6 +27,7 @@ namespace AreaBattle
             {
                 ColumnSpacing = 0,
                 RowSpacing = 0,
+                BackgroundColor = Color.FromHex("E9E2D7"),
 
                 ColumnDefinitions =
                     {
@@ -142,7 +143,6 @@ namespace AreaBattle
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
                         new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { }, new ColumnDefinition { },
-
                     },
                 RowDefinitions =
                     {

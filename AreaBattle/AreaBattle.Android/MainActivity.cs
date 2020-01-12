@@ -19,10 +19,10 @@ namespace AreaBattle.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
 
-            if (Build.VERSION.SdkInt >= Build.VERSION_CODES.Lollipop)
-            {
-                Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 233, 226, 215));
-            }
+            //if (Build.VERSION.SdkInt >= Build.VERSION_CODES.Lollipop)
+            //{
+            //    Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 233, 226, 215));
+            //}
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

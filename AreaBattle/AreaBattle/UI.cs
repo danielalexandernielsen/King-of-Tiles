@@ -21,13 +21,19 @@ namespace AreaBattle
             new Tuple<Button, int, int>(buttonPurple, 5, 3),
         };
 
+        public static void ClickedRed(object sender, EventArgs e) { Player.Move(buttonRed); }
+        public static void ClickedGreen(object sender, EventArgs e) { Player.Move(buttonGreen); }
+        public static void ClickedBlue(object sender, EventArgs e) { Player.Move(buttonBlue); }
+        public static void ClickedOrange(object sender, EventArgs e) { Player.Move(buttonOrange); }
+        public static void ClickedPurple(object sender, EventArgs e) { Player.Move(buttonPurple); }
+
         public static void InitializeButtons()
         {
-            buttonRed.Clicked += Player.ClickedRed;
-            buttonGreen.Clicked += Player.ClickedGreen;
-            buttonBlue.Clicked += Player.ClickedBlue;
-            buttonOrange.Clicked += Player.ClickedOrange;
-            buttonPurple.Clicked += Player.ClickedPurple;
+            buttonRed.Clicked += ClickedRed;
+            buttonGreen.Clicked += ClickedGreen;
+            buttonBlue.Clicked += ClickedBlue;
+            buttonOrange.Clicked += ClickedOrange;
+            buttonPurple.Clicked += ClickedPurple;
 
             UpdateButtons();
         }
@@ -61,12 +67,12 @@ namespace AreaBattle
                 {
                     if (timeBarDrawn == false)
                     {
-                        timeData[x] = new BoxView { Color = Color.Gray };
+                        timeData[x] = new BoxView { Color = (Player.turn == 1 ? Player.oneColor : Player.twoColor) };
                         Canvas.time.Children.Add(timeData[x], x, 0);
                     }
                     else
                     {
-                        timeData[x].Color = Color.Gray;
+                        timeData[x].Color = (Player.turn == 1 ? Player.oneColor : Player.twoColor);
                         Canvas.time.Children.Add(timeData[x], x, 0);
                     }
                 }
