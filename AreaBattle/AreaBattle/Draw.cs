@@ -86,43 +86,16 @@ namespace AreaBattle
         public static void GameOver()
         {
 
-            canvasData[6, 2].Color = Player.Color; canvasData[7, 2].Color = Player.Color; canvasData[8, 2].Color = Player.Color;
-            canvasData[9, 2].Color = Player.Color; canvasData[10, 3].Color = Player.Color; canvasData[8, 4].Color = Player.Color;
-            canvasData[9, 4].Color = Player.Color; canvasData[10, 5].Color = Player.Color; canvasData[6, 6].Color = Player.Color;
-            canvasData[7, 6].Color = Player.Color; canvasData[8, 6].Color = Player.Color; canvasData[9, 6].Color = Player.Color;
-
-            canvasData[6, 8].Color = Player.Color; canvasData[6, 10].Color = Player.Color; canvasData[6, 13].Color = Player.Color;
-            canvasData[7, 8].Color = Player.Color; canvasData[7, 10].Color = Player.Color; canvasData[7, 13].Color = Player.Color;
-            canvasData[8, 8].Color = Player.Color; canvasData[8, 10].Color = Player.Color; canvasData[8, 13].Color = Player.Color;
-            canvasData[9, 8].Color = Player.Color; canvasData[9, 10].Color = Player.Color; canvasData[9, 13].Color = Player.Color;
-            canvasData[10, 8].Color = Player.Color; canvasData[10, 10].Color = Player.Color; canvasData[10, 13].Color = Player.Color;
-
-            canvasData[6, 15].Color = Player.Color; canvasData[6, 18].Color = Player.Color; canvasData[6, 20].Color = Player.Color;
-            canvasData[7, 15].Color = Player.Color; canvasData[7, 18].Color = Player.Color; canvasData[7, 20].Color = Player.Color;
-            canvasData[8, 15].Color = Player.Color; canvasData[8, 18].Color = Player.Color; canvasData[8, 20].Color = Player.Color;
-            canvasData[9, 15].Color = Player.Color; canvasData[9, 18].Color = Player.Color; canvasData[9, 20].Color = Player.Color;
-            canvasData[10, 15].Color = Player.Color; canvasData[10, 18].Color = Player.Color; canvasData[10, 20].Color = Player.Color;
-
-            canvasData[6, 24].Color = Player.Color; canvasData[7, 24].Color = Player.Color; canvasData[8, 24].Color = Player.Color;
-            canvasData[9, 24].Color = Player.Color; canvasData[10, 24].Color = Player.Color;
-
-            canvasData[7, 11].Color = Player.Color; canvasData[8, 12].Color = Player.Color; canvasData[7, 16].Color = Player.Color; 
-            canvasData[8, 17].Color = Player.Color; canvasData[6, 21].Color = Player.Color; canvasData[8, 21].Color = Player.Color;
-            canvasData[10, 21].Color = Player.Color; canvasData[6, 25].Color = Player.Color; canvasData[8, 25].Color = Player.Color;
-            canvasData[6, 26].Color = Player.Color; canvasData[7, 26].Color = Player.Color; canvasData[9, 26].Color = Player.Color;
-            canvasData[10, 26].Color = Player.Color;
-
-
-
-            for (int x = 12; x <= 26; x++)
-                canvasData[x, 2].Color = Player.Color;
-
-
-            for (int x = 12; x <= 26; x++)
-                canvasData[x, 33].Color = Player.Color;
-
-
-
+            Label winnerText = new Label
+            {
+                Text = "PLAYER ONE",
+                TextColor = Color.Black,
+                FontFamily = "pixelated.ttf#Pixelated",
+                FontSize = 132,
+            };
+            Canvas.board.Children.Add(winnerText, 1, 1);
+            Grid.SetColumnSpan(winnerText, 28);
+            Grid.SetRowSpan(winnerText, 39);
 
         }
     }
