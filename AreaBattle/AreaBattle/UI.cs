@@ -122,8 +122,8 @@ namespace AreaBattle
         {
             int nrOfOwnedTiles = playerScore.Count;
             double currentScore = Math.Ceiling(nrOfOwnedTiles / 11.6);
-            int divider = 50;
-
+            int goal = 50;
+            
             for (int x = 0; x < (int)currentScore; x++)
             {
                 if (Player.turn == 1)
@@ -131,6 +131,9 @@ namespace AreaBattle
                 else
                     scoreData[x].Color = replacementColor;
             }
+
+            if (currentScore >= goal)
+                Draw.GameOver();
 
             Canvas.interFace.Children.Add(Canvas.score, 1, 5);
             Grid.SetColumnSpan(Canvas.score, 5);

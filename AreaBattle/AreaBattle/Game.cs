@@ -10,13 +10,11 @@ namespace AreaBattle
         {
             Canvas.Generate();
             Draw.Tiles();
-            Draw.GameOver();
-
-            //Player.Start();
-            //Device.StartTimer(TimeSpan.FromSeconds(1.00), UpdateTime);
-            //UI.InitializeButtons();
-            //UI.InitializeScore();
-            //Sound.Play();
+            Player.Start();
+            Device.StartTimer(TimeSpan.FromSeconds(1.00), UpdateTime);
+            UI.InitializeButtons();
+            UI.InitializeScore();
+            Sound.Play();
 
             Canvas.layout.Children.Add(Canvas.board, 0, 0);
             Canvas.layout.Children.Add(Canvas.interFace, 0, 1);
@@ -29,7 +27,11 @@ namespace AreaBattle
             {
                 UI.Time();
             });
-            return true;
+
+            if (Player.gameOver == true)
+                return false;
+            else
+                return true;
         }
     }
 }

@@ -7,6 +7,7 @@ namespace AreaBattle
     class Player
     {
         public static int turn;
+        public static bool gameOver = false;
         public static Color oneColor;
         public static Color twoColor;
 

@@ -83,20 +83,28 @@ namespace AreaBattle
             }
         }
 
+
+
         public static void GameOver()
         {
+            Canvas.board.Opacity = 0.2;
 
-            Label winnerText = new Label
+            Label winner = new Label
             {
-                Text = "PLAYER ONE",
-                TextColor = Color.Black,
+                TextColor = Player.Color,
                 FontFamily = "pixelated.ttf#Pixelated",
-                FontSize = 132,
+                FontSize = 110,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
             };
-            Canvas.board.Children.Add(winnerText, 1, 1);
-            Grid.SetColumnSpan(winnerText, 28);
-            Grid.SetRowSpan(winnerText, 39);
 
+            if (Player.turn == 1)            
+                winner.Text = " WINNER\n" + "   PLAYER\n" + "       ONE!";            
+            else
+                winner.Text = " WINNER\n" + "   PLAYER\n" + "       TWO!";
+
+            Canvas.layout.Children.Add(winner, 0, 0);
+            Player.gameOver = true;
         }
     }
 }
